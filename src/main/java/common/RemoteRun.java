@@ -12,6 +12,7 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 import dto.TestRequest;
 import dto.TestResponse;
+import helpers.Config;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -39,6 +40,7 @@ public class RemoteRun {
     private static ConcurrentHashMap<String, TestResponse> allResults;
 
     public void runAllRemote() {
+        Config.readProperties();
         final LambdaService myService = prepareLambdaService();
         Map<String, List<String>> allTc = collectAllTestCases();
         long testCount = allTc.entrySet().stream()
@@ -49,10 +51,10 @@ public class RemoteRun {
         allResults = new ConcurrentHashMap(toIntExact(testCount));
         allResults.clear();
         allTc.entrySet().stream()
-                .flatMap(entry -> {
-                    return entry.getValue().stream()
-                            .map(test -> new TestRequest(counter.incrementAndGet(), entry.getKey(), test));
-                })
+                .flatMap(entry ->
+                    entry.getValue().stream()
+                            .map(test -> new TestRequest(counter.incrementAndGet(), entry.getKey(), test))
+                )
                 .parallel()
                 .forEach(req -> requestTestCase2(req, myService, ex));
 
@@ -159,8 +161,7 @@ public class RemoteRun {
 
     private static LambdaService prepareLambdaService() {
         BasicAWSCredentials credentials = new
-                BasicAWSCredentials("",
-                "");
+                BasicAWSCredentials(PROPERTY.L_KEY.getValue(), PROPERTY.L_PASS.getValue());
         final LambdaService myService = LambdaInvokerFactory.builder()
                 .lambdaClient(AWSLambdaClientBuilder.standard()
                         .withCredentials(new AWSStaticCredentialsProvider(credentials))

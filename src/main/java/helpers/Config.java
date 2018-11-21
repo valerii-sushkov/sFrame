@@ -15,15 +15,8 @@ import java.util.logging.Logger;
 public class Config {
     private static Properties properties = new Properties();
     private static Logger LOGGER = Logger.getLogger(Config.class.getName());
-
-//    public static final String RESOURCES_PATH = "/var/task/";
-//    public static final String TEMP = "/tmp/";
     public static final String RESOURCES_PATH_L = "local" + File.separator;
-//    public static final String TEMP_L = "C:\\Users\\Valerii_Sushkov\\test\\sFrame\\tmp\\";
-//    public static final String DEFAULT_RUN_PROPERTIES_PATH = RESOURCES_PATH + "local/config.properties";
     public static final String DEFAULT_RUN_PROPERTIES_PATH_L = RESOURCES_PATH_L + "config.properties";
-//    public static final String DRIVER_NAME = "phantomjs";
-//    public static final String SCREENSHOT_PATH = "/tmp/";
 
 
     public static void readProperties() {

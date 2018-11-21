@@ -11,7 +11,9 @@ public enum PROPERTY {
     TMP_FOLDER("tmp.folder"),
     SUITE_TO_RUN("test.suite"),
     TEST_TO_RUN("test.name"),
-    TEST_ID("test.id");
+    TEST_ID("test.id"),
+    L_KEY("lambda.key"),
+    L_PASS("lambda.pas");
 
     private String valueName;
 
