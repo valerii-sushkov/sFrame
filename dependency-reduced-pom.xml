@@ -18,7 +18,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>src.main.java.common.Run</mainClass>
+                  <mainClass>src.main.java.Run.LambdaRun</mainClass>
                 </transformer>
               </transformers>
             </configuration>

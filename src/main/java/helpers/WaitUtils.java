@@ -1,6 +1,6 @@
 package helpers;
 
-import common.PROPERTY;
+import Run.PROPERTY;
 import drivers.DriverSession;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;

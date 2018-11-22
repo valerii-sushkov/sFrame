@@ -1,6 +1,6 @@
 package tests;
 
-import common.PROPERTY;
+import Run.PROPERTY;
 import drivers.DriverFactory;
 import drivers.DriverSession;
 import helpers.Config;

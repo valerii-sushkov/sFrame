@@ -1,5 +1,6 @@
 package common;
 
+import Run.LogCollector;
 import drivers.DriverSession;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -19,16 +20,16 @@ public class TestResultListener extends TestListenerAdapter implements ITestList
     @Override
     public void onTestFailure(final ITestResult iTestResult) {
         LOGGER.severe("Last URL:" + DriverSession.getDriverSession().getCurrentUrl());
-        LogHandler2.setResult(1);
-        LogHandler2.consumeLog(Reporter.getOutput(iTestResult));
+        LogCollector.setResult(1);
+        LogCollector.consumeLog(Reporter.getOutput(iTestResult));
         takeHeadlessScreenShot();
 
     }
 
     @Override
     public void onTestSuccess(final ITestResult iTestResult) {
-        LogHandler2.setResult(0);
-        LogHandler2.consumeLog(Reporter.getOutput(iTestResult));
+        LogCollector.setResult(0);
+        LogCollector.consumeLog(Reporter.getOutput(iTestResult));
     }
 
     @Override
@@ -39,7 +40,7 @@ public class TestResultListener extends TestListenerAdapter implements ITestList
         String image64 = ((TakesScreenshot) DriverSession.getDriverSession()).getScreenshotAs(OutputType.BASE64);
         Reporter.log("<img style=\"width:100%\" src=\"data:image/jpeg;base64," +
                 image64 + "\"/>");
-        LogHandler2.setScreenShot(image64);
+        LogCollector.setScreenShot(image64);
     }
 
 
